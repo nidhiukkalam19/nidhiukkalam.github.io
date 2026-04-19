@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nidhi Johari Ukkalam</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FAF6F1;
+  --surface: #FFFFFF;
+  --card: #F2EDE7;
+  --accent: #C4553A;
+  --accent-soft: rgba(196, 85, 58, 0.08);
+  --accent-hover: #A8432B;
+  --text: #1A1A1A;
+  --text-mid: #4A4A4A;
+  --text-muted: #8C8680;
+  --border: #E0D9D1;
+  --dark-block: #1A1A1A;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Outfit', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(250,246,241,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-name { font-family: var(--font-serif); font-size: 1.3rem; color: var(--text); }
+.nav-links { display: flex; gap: 1.8rem; }
+.nav-links a {
+  color: var(--text-muted); text-decoration: none; font-size: 0.82rem;
+  font-weight: 500; letter-spacing: 0.3px; transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+.hero {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  padding: 8rem 2.5rem 4rem; text-align: center; position: relative;
+}
+.hero-inner { max-width: 800px; }
+.hero-badge {
+  display: inline-block; padding: 0.5rem 1.4rem; border: 1px solid var(--accent);
+  color: var(--accent); font-size: 0.72rem; font-weight: 600; letter-spacing: 2.5px;
+  text-transform: uppercase; margin-bottom: 2.5rem; border-radius: 100px;
+  opacity: 0; animation: fadeIn 0.6s 0.2s forwards;
+}
+.hero h1 {
+  font-family: var(--font-serif); font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400;
+  line-height: 1.1; margin-bottom: 1.8rem; color: var(--text);
+  opacity: 0; animation: fadeIn 0.8s 0.4s forwards;
+}
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-sub {
+  font-size: 1.1rem; color: var(--text-mid); line-height: 1.8; max-width: 600px;
+  margin: 0 auto 2.5rem; font-weight: 300;
+  opacity: 0; animation: fadeIn 0.8s 0.6s forwards;
+}
+.hero-ctas {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: fadeIn 0.8s 0.8s forwards;
+}
+.btn {
+  padding: 0.9rem 2.2rem; font-family: var(--font-sans); font-size: 0.85rem;
+  font-weight: 600; border: none; cursor: pointer; text-decoration: none;
+  border-radius: 6px; transition: all 0.3s; letter-spacing: 0.2px;
+}
+.btn-fill { background: var(--accent); color: #fff; }
+.btn-fill:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,85,58,0.2); }
+.btn-ghost { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.metrics {
+  display: grid; grid-template-columns: repeat(3, 1fr); max-width: 900px;
+  margin: -2rem auto 0; position: relative; z-index: 2;
+  opacity: 0; animation: fadeIn 0.8s 1s forwards;
+}
+.metric { text-align: center; padding: 2.5rem 1.5rem; border-right: 1px solid var(--border); }
+.metric:last-child { border-right: none; }
+.metric-val { font-family: var(--font-serif); font-size: 3rem; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+.metric-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; }
+
+.dark-band { background: var(--dark-block); color: #F0ECE6; padding: 6rem 2.5rem; }
+.dark-band .section-label { color: rgba(196,85,58,0.9); }
+.dark-band .section-title { color: #F0ECE6; }
+
+.container { max-width: 1100px; margin: 0 auto; }
+section { padding: 6rem 2.5rem; }
+.section-label { font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 0.8rem; }
+.section-title { font-family: var(--font-serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 400; margin-bottom: 3rem; line-height: 1.2; }
+
+.tl-item {
+  display: grid; grid-template-columns: 140px 1fr; gap: 3rem;
+  padding: 2.2rem 0; border-top: 1px solid rgba(255,255,255,0.08); position: relative;
+}
+.tl-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.tl-date { font-size: 0.82rem; color: rgba(240,236,230,0.4); font-weight: 400; padding-top: 0.2rem; }
+.tl-company { font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 0.2rem; }
+.tl-role { font-size: 0.85rem; color: rgba(196,85,58,0.9); font-weight: 500; margin-bottom: 0.8rem; }
+.tl-desc { color: rgba(240,236,230,0.55); font-size: 0.9rem; line-height: 1.75; font-weight: 300; }
+.tl-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.tl-tag {
+  padding: 0.3rem 0.7rem; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.5px;
+  text-transform: uppercase; border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(240,236,230,0.5); border-radius: 4px; transition: all 0.3s;
+}
+.tl-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+.projects-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.proj {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  padding: 2.2rem 1.8rem; transition: all 0.4s; position: relative; overflow: hidden;
+}
+.proj:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.06); border-color: var(--accent); }
+.proj-num { font-family: var(--font-serif); font-size: 4rem; color: var(--accent); opacity: 0.08; position: absolute; top: -0.5rem; right: 1rem; line-height: 1; }
+.proj h3 { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 400; margin-bottom: 0.8rem; line-height: 1.4; }
+.proj p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.7; font-weight: 300; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.proj-tag { padding: 0.25rem 0.65rem; background: var(--accent-soft); color: var(--accent); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; border-radius: 4px; }
+
+.skills-section { background: var(--card); }
+.skill-row { margin-bottom: 2rem; }
+.skill-row:last-child { margin-bottom: 0; }
+.skill-row-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 0.8rem; }
+.skill-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip {
+  padding: 0.5rem 1.1rem; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 100px; font-size: 0.82rem; font-weight: 400; color: var(--text-mid); transition: all 0.3s;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+.edu-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.edu-card { padding: 2rem; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.edu-degree { font-family: var(--font-serif); font-size: 1.15rem; margin-bottom: 0.3rem; }
+.edu-school { color: var(--accent); font-size: 0.85rem; font-weight: 500; margin-bottom: 0.2rem; }
+.edu-meta { color: var(--text-muted); font-size: 0.82rem; font-weight: 300; }
+
+.cert-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+.cert { padding: 0.55rem 1.2rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; font-weight: 500; color: var(--text-mid); }
+
+.contact-band { background: var(--dark-block); color: #F0ECE6; text-align: center; padding: 6rem 2.5rem; }
+.contact-band .section-title { color: #F0ECE6; margin-bottom: 1rem; }
+.contact-sub { color: rgba(240,236,230,0.5); font-size: 1rem; font-weight: 300; max-width: 550px; margin: 0 auto 2.5rem; line-height: 1.8; }
+.contact-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-light {
+  background: #F0ECE6; color: var(--dark-block); padding: 0.9rem 2.2rem;
+  font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600;
+  border: none; border-radius: 6px; cursor: pointer; text-decoration: none; transition: all 0.3s;
+}
+.btn-light:hover { background: #fff; transform: translateY(-2px); }
+.btn-outline-light {
+  background: transparent; color: rgba(240,236,230,0.7); padding: 0.9rem 2.2rem;
+  font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600;
+  border: 1.5px solid rgba(255,255,255,0.15); border-radius: 6px;
+  cursor: pointer; text-decoration: none; transition: all 0.3s;
+}
+.btn-outline-light:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+
+footer {
+  text-align: center; padding: 1.5rem 2.5rem; background: var(--dark-block);
+  border-top: 1px solid rgba(255,255,255,0.06); color: rgba(240,236,230,0.3); font-size: 0.75rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  nav { padding: 0.8rem 1.2rem; }
+  .nav-links { display: none; }
+  .hero { padding: 7rem 1.5rem 3rem; }
+  section, .dark-band, .contact-band { padding: 4rem 1.5rem; }
+  .metrics { grid-template-columns: 1fr; }
+  .metric { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem; }
+  .metric:last-child { border-bottom: none; }
+  .tl-item { grid-template-columns: 1fr; gap: 0.3rem; }
+  .projects-row { grid-template-columns: 1fr; }
+  .edu-cols { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Nidhi Johari Ukkalam</div>
+  <div class="nav-links">
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Open to Opportunities &bull; May 2026</div>
+    <h1>Data, analytics, and the <em>clarity</em> between them.</h1>
+    <p class="hero-sub">I'm Nidhi — a data professional with 3+ years building pipelines, dashboards, and ML models that turn ambiguity into action. Dual Master's from Northeastern. Former Amazon BIE Intern.</p>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn btn-fill">See My Work</a>
+      <a href="#contact" class="btn btn-ghost">Let's Connect</a>
+    </div>
+  </div>
+</section>
+
+<div class="metrics">
+  <div class="metric"><div class="metric-val">70%</div><div class="metric-label">Processing Time Reduced</div></div>
+  <div class="metric"><div class="metric-val">75%</div><div class="metric-label">Prediction Accuracy Improved</div></div>
+  <div class="metric"><div class="metric-val">80%</div><div class="metric-label">Storage Efficiency Gained</div></div>
+</div>
+
+<div class="dark-band" id="experience">
+  <div class="container">
+    <div class="reveal"><div class="section-label">Experience</div><div class="section-title">Where the work happened.</div></div>
+
+    <div class="tl-item reveal">
+      <div class="tl-date">2025</div>
+      <div>
+        <div class="tl-company">Amazon</div>
+        <div class="tl-role">Business Intelligence Engineer Intern — Worldwide Stores</div>
+        <div class="tl-desc">Worked with the Intellectual Property Protection team to support brand and IP integrity. Integrated brand protection metrics from multiple sources, built ETL pipelines and Redshift tables, managed MySQL Server for product and seller data, and designed QuickSight dashboards for stakeholders to monitor risk trends and drive data-informed decisions.</div>
+        <div class="tl-tags"><span class="tl-tag">Redshift</span><span class="tl-tag">ETL</span><span class="tl-tag">QuickSight</span><span class="tl-tag">MySQL</span><span class="tl-tag">Python</span></div>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-date">2024 — Now</div>
+      <div>
+        <div class="tl-company">Northeastern University</div>
+        <div class="tl-role">Gen AI-Human Interaction Research Assistant</div>
+        <div class="tl-desc">Leading data analysis for LearnBot, a GenAI grading tool for educators. Researching grading rubric development for LLMs to reduce AI hallucinations and increase context-based grading. Managing team research tasks using Asana.</div>
+        <div class="tl-tags"><span class="tl-tag">Python</span><span class="tl-tag">GenAI</span><span class="tl-tag">NLP</span><span class="tl-tag">Asana</span></div>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-date">2023</div>
+      <div>
+        <div class="tl-company">Safety Kleen (Clean Harbors)</div>
+        <div class="tl-role">Data Analyst Apprentice</div>
+        <div class="tl-desc">Performed price optimization and churn analysis to predict customer attrition and optimize costs. Built Tableau dashboards for sales visualization and delivered business recommendations to stakeholders.</div>
+        <div class="tl-tags"><span class="tl-tag">Tableau</span><span class="tl-tag">Python</span><span class="tl-tag">Churn Analysis</span></div>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-date">2021 — 2022</div>
+      <div>
+        <div class="tl-company">KANI Solutions (BlueVision AI)</div>
+        <div class="tl-role">Data Engineer</div>
+        <div class="tl-desc">Built NER/NLP models to extract data from 10,000+ scanned banking and insurance documents — cutting processing time by 70% and improving accuracy by 80%. Led reinsurance data analysis with Redshift and Power BI. Developed an interactive Vue JS interface for document scanning.</div>
+        <div class="tl-tags"><span class="tl-tag">NER/NLP</span><span class="tl-tag">Redshift</span><span class="tl-tag">Power BI</span><span class="tl-tag">Vue JS</span><span class="tl-tag">ETL</span></div>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-date">2019 — 2021</div>
+      <div>
+        <div class="tl-company">Intellect Design Arena</div>
+        <div class="tl-role">Data Scientist</div>
+        <div class="tl-desc">Developed automated forecasting for a government e-commerce platform using Linear Regression and Random Forest, improving prediction accuracy by 75%. Built OCR-based document recognizer models and managed purchase data with end-to-end SQL and Tableau reporting.</div>
+        <div class="tl-tags"><span class="tl-tag">ML</span><span class="tl-tag">SQL</span><span class="tl-tag">Tableau</span><span class="tl-tag">OCR</span><span class="tl-tag">Python</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="projects">
+  <div class="container">
+    <div class="reveal"><div class="section-label">Projects</div><div class="section-title">Things I've built.</div></div>
+    <div class="projects-row">
+      <div class="proj reveal">
+        <div class="proj-num">01</div>
+        <h3>Grading Rubric Knowledge Graph</h3>
+        <p>Building a knowledge graph with Neo4j and BERT to extract causal phrases from course material for LLM-based grading at Northeastern's DMSB Strategic Hub.</p>
+        <div class="proj-tags"><span class="proj-tag">Neo4j</span><span class="proj-tag">BERT</span><span class="proj-tag">Python</span></div>
+      </div>
+      <div class="proj reveal">
+        <div class="proj-num">02</div>
+        <h3>Automated Peer Evaluation</h3>
+        <p>End-to-end system that collates student peer reviews, processes them, and computes scores — reducing manual work for professors and TAs at D'Amore-McKim.</p>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">SQL</span><span class="proj-tag">Automation</span></div>
+      </div>
+      <div class="proj reveal">
+        <div class="proj-num">03</div>
+        <h3>Accident Severity Analysis</h3>
+        <p>Analyzed US automobile accident severity patterns using Regression and Random Forest, identifying key indicators through data mining techniques.</p>
+        <div class="proj-tags"><span class="proj-tag">ML</span><span class="proj-tag">Python</span><span class="proj-tag">Data Mining</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills-section">
+  <div class="container">
+    <div class="reveal"><div class="section-label">Skills</div><div class="section-title">What I work with.</div></div>
+    <div class="reveal">
+      <div class="skill-row">
+        <div class="skill-row-label">Analytics & Data</div>
+        <div class="skill-chips">
+          <span class="chip">Python</span><span class="chip">R</span><span class="chip">SQL</span><span class="chip">MySQL</span><span class="chip">AWS Redshift</span><span class="chip">ETL (Dbt, Stitch)</span><span class="chip">Data Modeling</span><span class="chip">Advanced Excel</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-label">AI & Machine Learning</div>
+        <div class="skill-chips">
+          <span class="chip">NLP / NER (Spacy)</span><span class="chip">RAG</span><span class="chip">YOLO</span><span class="chip">OCR</span><span class="chip">Random Forest</span><span class="chip">Linear Regression</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-label">Visualization & BI</div>
+        <div class="skill-chips">
+          <span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">Amazon QuickSight</span><span class="chip">Plotly</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-label">Project Management</div>
+        <div class="skill-chips">
+          <span class="chip">Agile / Scrum</span><span class="chip">Primavera</span><span class="chip">Asana</span><span class="chip">Minitab</span><span class="chip">Risk Management</span><span class="chip">WBS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <div class="reveal"><div class="section-label">Education</div><div class="section-title">The foundation.</div></div>
+    <div class="edu-cols">
+      <div class="edu-card reveal"><div class="edu-degree">M.S. Project Management</div><div class="edu-school">Northeastern University</div><div class="edu-meta">Adv. Data Analytics Concentration &bull; GPA 3.9 &bull; 2026</div></div>
+      <div class="edu-card reveal"><div class="edu-degree">M.S. Business Analytics</div><div class="edu-school">Northeastern University</div><div class="edu-meta">STEM Graduate Degree &bull; GPA 3.6 &bull; 2023</div></div>
+      <div class="edu-card reveal"><div class="edu-degree">B.Tech Computer Science</div><div class="edu-school">ICFAI University, India</div><div class="edu-meta">CS Engineering &bull; GPA 3.5 &bull; 2019</div></div>
+    </div>
+    <div class="reveal" style="margin-top: 3rem;">
+      <div class="section-label">Certifications</div>
+      <div class="cert-row">
+        <span class="cert">Tableau Desktop Specialist</span><span class="cert">AWS Cloud Practitioner</span><span class="cert">Alteryx Foundational</span><span class="cert">Alteryx Designer Core</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="contact-band" id="contact">
+  <div class="container reveal">
+    <div class="section-label">Let's Talk</div>
+    <div class="section-title">Graduating May 2026. Ready to contribute.</div>
+    <p class="contact-sub">Actively looking for roles in Business Intelligence, Data Analytics, and Project Management. If you're hiring or know someone who is — I'd love to hear from you.</p>
+    <div class="contact-btns">
+      <a href="mailto:nidhi.ukkalam@gmail.com" class="btn-light">nidhi.ukkalam@gmail.com</a>
+      <a href="https://www.linkedin.com/in/nidhi-johari-ukkalam" target="_blank" class="btn-outline-light">LinkedIn Profile</a>
+    </div>
+  </div>
+</div>
+
+<footer>&copy; 2026 Nidhi Johari Ukkalam</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
